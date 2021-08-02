@@ -29,7 +29,6 @@ public class MainTest {
         data.put("x-real-ip","96.");
         //172.0.32.11 96.44.183.149
         MessageSender messageSender = new MessageSenderImpl(geoService,localizationService);
-        messageSender.send(data);
 
         String expectedRus = "Добро пожаловать";
         String expectedEn = "Welcome";
