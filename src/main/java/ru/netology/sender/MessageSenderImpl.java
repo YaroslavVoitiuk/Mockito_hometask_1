@@ -2,6 +2,7 @@ package ru.netology.sender;
 
 import java.util.Map;
 
+
 import ru.netology.entity.Country;
 import ru.netology.entity.Location;
 import ru.netology.geo.GeoService;
@@ -14,16 +15,18 @@ public class MessageSenderImpl implements MessageSender {
 
     private final LocalizationService localizationService;
 
+
     public MessageSenderImpl(GeoService geoService, LocalizationService localizationService) {
         this.geoService = geoService;
         this.localizationService = localizationService;
     }
 
     public String send(Map<String, String> headers) {
+
         String ipAddress = String.valueOf(headers.get(IP_ADDRESS_HEADER));
         if (ipAddress != null && !ipAddress.isEmpty()) {
             Location location = geoService.byIp(ipAddress);
-            System.out.printf("Отправлено сообщение: %s", localizationService.locale(location.getCountry()));
+            System.out.printf("Отправлено сообщение: %s\n", localizationService.locale(location.getCountry()));
             return localizationService.locale(location.getCountry());
         }
         return localizationService.locale(Country.USA);
